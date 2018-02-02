@@ -1,0 +1,146 @@
+
+Programming Assignment 1
+due 
+0
+2/
+07/2018
+Write 
+a
+Java program on the UNIX side of z
+/OS
+to
+compute 
+and display 
+all numbers between 100 and 1 
+million which has the property that 
+the 
+sum of each digit raised to the power of the number of digits in 
+the number 
+is equal the number. For example
+,
+one such number is 153 = 1
+3
++5
+3
++3
+3
+and another number 
+is 9
+,
+474 = 9
+4
++4
+4
++7
+4
++4
+4
+.
+Likewise
+1,235 
+≠
+1
+4
++
+2
+4
++
+3
+4
++
+5
+4
+and is not one of the numbers. 
+Your program must 
+display all the number
+s in the range
+with the property. 
+Your program
+display in the command 
+line 
+window
+must be
+one line for each number and the number must 
+be formatted using the 
+comma 
+separat
+ion
+. Name your folder as 
+SpecialNumbers
+and 
+the 
+java program file as 
+SpecialNumbers.java
+. 
+The
+comment section of 
+your 
+java file must 
+include your name, date
+,
+and a brief description. You 
+may 
+use 
+I
+Dz 
+or 
+the 
+SSH client 
+on Thor and the 
+vi
+editor 
+to work on the 
+program on the 
+mainframe. After 
+completing the work on the mainframe and getting the results, copy the folder to 
+you
+r
+local machine 
+directory CS3321, z
+ip the folder
+,
+and rename 
+it 
+as 
+your_last_
+name_01.zip
+. Please note that only .zip 
+files will 
+be 
+graded
+. I
+f 
+the 
+file cannot be unzipped at my end then it will not get graded. 
+How to turn in your work
+:
+(1)
+Click on 
+201
+8
+SP INTRO EN
+TERPRISE SYS (CS
+-
+3321
+-
+01)
+’
+(2)
+Click on the left side item ‘
+Lessons
+-
+>Assignments(Dropbox)
+-
+>Assignment 1
+’. 
+(3)
+Then click on ‘Browse My Computer’ and point t
+o the compressed file your_last_
+name_01.zip, 
+click open, and allow the server to upload your work, and click ‘Submit’ button. After that you 
+can preview your submission to make sure that the intended file was turned in. 
+Note:
+After you submit your assignment, you must verify by clickin
+g on the ‘Browse My Collection’ 
+button the content of the submission. If you find that you did accidently turn in a wrong file, please 
+resubmit the correct file right away. 
