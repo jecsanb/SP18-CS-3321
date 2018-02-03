@@ -37,7 +37,7 @@ public class SpecialNumbers
             sum = sumAndPower(getDigits(i),howManyDigits(i));
             // System.out.printf("Number: %d Sum: %d\n",i,sum);
             if(i == sum){
-                System.out.printf("%d,",i);
+                System.out.printf("%,d\n",i);
             }
         }
         System.out.println();
