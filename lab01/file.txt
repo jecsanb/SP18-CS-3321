@@ -1,0 +1,28 @@
+// File: Statistician.java
+// This is an assignment for students to complete after reading Chapter 2 of
+// "Data Structures and Other Objects Using Java" by Michael Main.
+
+
+/******************************************************************************
+* This class is a homework assignment;
+* A <CODE>Statistician</CODE> keeps track of statistics about a sequence of
+* double numbers.<br>
+*
+* <b>Note:</b><br>
+*   This file contains only blank implementations ("stubs") for many of
+*   the methods because this is a Programming Project for students in Prof. Haiduk's
+*   CS 3305 class
+*
+* @version
+*   Jan 23, 2018
+******************************************************************************/
+   /**
+   * Initialize a new Statistician as a copy of another Statistician <br>
+   * @param other
+   *     other is a non-null reference to another Statistician
+   * <b>Precondition:</b><br>
+   *   Other is not null.  If it is, then throw NullPointerException
+   * <b>Postcondition:</b><br>
+   *   This Statistician is newly initialized and has been given attributes
+   *   equal to those of other
+   **/
