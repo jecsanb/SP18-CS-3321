@@ -1,0 +1,201 @@
+
+Programming Assignment 
+2
+due 2/
+19
+/201
+8
+Write 
+a
+J
+ava program to compute the Dow Jones Industrial Average (DJIA)
+on the UNIX 
+subsystem
+of z
+/OS
+. Your program 
+must
+compute the 
+average
+for the previous 
+trading 
+day
+’
+s
+closing
+price
+.
+The 
+stocks that 
+constitute 
+DJIA are decided by 
+the 
+editorial board of the Wall Street 
+Journal (WSJ). As of now, there are 30 company stocks and their 
+symbols are 
+AXP, 
+AAPL, BA, CAT, CVX, CSCO, KO, DIS, DWDP, XOM, GE, GS, HD, IB
+M, INTC, JNJ, 
+JPM, MCD, MRK, MMM, MSFT, NKE, PFE, PG, TRV, UTX, UNH, VZ, V, WMT. 
+The
+average 
+is 
+calculated as the 
+sum of the price of the 
+symbols divided by a constant. The 
+value of the constant is 
+set
+by the WSJ 
+board 
+which 
+may 
+change from time to ti
+me 
+and
+its 
+present (as of 2/1
+0
+/
+18) 
+valu
+e
+is 
+0.14602128057775. 
+Your program must read the stock symbols from a text 
+file 
+name
+d
+‘
+ticker.txt
+’
+.
+You
+must 
+implement a class called 
+‘
+Djia
+Average
+’
+to 
+read 
+iteratively
+the
+symbol
+s
+from the input text 
+file
+, 
+retrieve
+t
+heir
+price
+s
+and 
+then compute the average
+, 
+rounded to 2 decimal precision.
+Your output 
+shoul
+d be 
+a
+line such as
+:
+Djia =  
+24,601.27
+For example, y
+ou will use the URL 
+https://query1.finance.yahoo.com/v8/finance/chart/MSFT?interval=
+2
+m
+to
+get the chart 
+for MSFT as a string. 
+Then y
+ou need to parse the string to get the 
+previous 
+trading 
+day’s clos
+ing
+time price
+.
+Please note
+that
+t
+he URL is good to extract a stock symbol
+data 
+a
+s of now
+. We are not 
+sure
+how long 
+the URL may 
+provide the data
+because it is maintained by
+a
+for
+-
+profit 
+company
+.
+Your documentation must include your name, date
+,
+and a brief description. You need to 
+use
+IDz
+to copy and save your work 
+(
+a
+java 
+files
+and text input file
+) 
+locally in a folder 
+DJIA. 
+Z
+ip the folder and rename as your_last
+name_02
+.zip. Please note that only .zip 
+files will 
+be 
+graded
+. It is required 
+that
+your code must run on the 
+mainframe
+and that you
+use 
+class 
+the 
+name
+and text file 
+name
+as given above.
+How to turn in your work
+:
+(1)
+Click on 201
+8
+SP INTRO ENTERPRISE SYS (CS
+-
+3321
+-
+01)
+’
+(2)
+Click on the left side item ‘Lessons
+-
+>A
+ssignments(Dropbox)
+-
+>Assignment 
+2
+’. 
+(3)
+Then click on ‘Browse My Computer’ and point to the compressed file 
+your_last
+name_0
+2
+.zip, click open, and allow the server to upload your work, and 
+click ‘Submit’ button. After that you can preview your submission to m
+ake sure 
+that the intended file was turned in. 
