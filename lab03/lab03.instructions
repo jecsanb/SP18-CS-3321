@@ -1,0 +1,109 @@
+Mainframe Assignment 3 due 3/19/2018
+Learning Objective: Write simple JCL to invoke built in utilities on the mainframe.
+Copy the dataset C332100.BULB into C3321XX.DATA(BULB), where XX is the last two digits of your user-id on the mainframe. 
+In this assignment, your will write JCL statements to work with the dataset C3321XX.DATA(BULB) and find 
+  1) sum the order quantity sold for each light bulb type                       
+ 	 2) sum the sale amount for each light bulb type                                      
+Your JCL must be completed in three steps as described below.
+Before we get to the steps, let us understand a little more about the sort program on the mainframe.
+Example:                                                                        
+SORT FIELDS=(1,4,CH,A) <<<< primary sort key field                              
+SUM  FIELDS=(7,2,ZD)   <<<< total amount in column 7 for length of 2            
+                                                                                
+SORTIN                                                                          
+------                                                                    å      
+AAAA   8                                                                        
+AAAA  22                                                                        
+BBBB   5                                                                        
+BBBB  94                                                                        
+                                                                                
+SORTOUT result                                                                  
+--------------                                                                  
+AAAA  30                                                                        
+BBBB  99                                                                        
+                                                                                
+However - given:                                                                
+                                                                                
+SORTIN                                                                          
+------                                                                          
+AAAA   8                                                                        
+AAAA  22                                                                        
+BBBB   5                                                                        
+BBBB  95                                                                        
+                                                                                
+SORTOUT result                                                                  
+--------------                                                                  
+AAAA  30                                                                        
+BBBB   5                                                                        
+BBBB  95                                                                        
+                                                                                
+WHY? - only 2 columns are specified for totaling the number field  and 95 + 5 = 100 require 3 column positions for addition result. Sort is capable of handling this situation with advanced SORT control statements, INREC OVERLAY and OUTREC OVERLAY.  
+INREC control statement allows you to reformat the input records BEFORE they are sorted, merged, or copied. 
+OUTREC control statement allows you to reformat the records AFTER they are sorted, merged, or copied.                                                    
+INREC and OUTREC control statements support a wide variety of parsing, editing, and reformatting functions.                                           
+OVERLAY: Reformat each record by specifying just the items that overlay specific columns. Overlay lets you change specific existing columns without affecting the entire record.                                    
+                                                                                
+Data format of the BULB data set:                                                 
+Description        Column    Length                                             
+-----------------  ------    ------                                             
+Light Bulb Type.....  1 ...... 42                                               
+Price Per Bulb...... 43 ......  5                                               
+Order Quantity...... 51 ......  3                                               
+Total Sale Amount... 59 ......  8                                               
+  where:  Price Per Bulb x Order Quantity = Total Sale Amount                   
+                                                                                
+Light Bulb Type is to be the primary sort key field.                            
+                                                                                
+Both 'Order Quantity' and 'Total Sale Amount' is to be summed on a single line containing the one 'Light Bulb Type' record line. This can be accomplished using the SUM FIELDS control statement.
+
+Name your JCL data set as ‘C3321XX.JCL(BJCL)’, where XX is the last two digits of your user-id.                
+A JCL EXEC statement for the job may be given as follows: (need to change XX to the last two digits of your log-on id)
+//STEP1 EXEC PGM=SORT                                                   
+//SORTIN DD DISP=SHR,DSN=C3321XX.DATA(BULB)                        
+//SORTOUT DD DISP=SHR,DSN=C3321XX. DATA (BOUT1)                           
+//SYSOUT DD SYSOUT=*                                                    
+//SYSIN DD *                                                            
+   INREC OVERLAY=(51:51,5,UFF,TO=ZD,LENGTH=5)                            
+     SORT FIELDS=(1,41,CH,A)                                             
+     SUM  FIELDS=(51,5,ZD)                                               
+     OUTREC OVERLAY=(51:51,5,ZD,EDIT=(IIIII))                            
+The purpose of the INREC above is to declare the field starting in 51 to be considered a length of 5 and the UFF,TO=ZD telling sort the field is to be viewed as an Unsigned Free Format number and converted to a Zoned Decimal which is necessary for arithmetic operation.                                    
+                                                                                
+Now the SUM FIELDS has enough positions to sum the 'Quantity Ordered'           
+The purpose of the OUTREC above is to declare the field starting in 51 to be considered a length of 5 to be written to output.          
+//STEP2 EXEC PGM=SORT                            
+//SORTIN DD DISP=SHR,DSN=C3321XX.DATA(BULB) 
+//SORTOUT DD DISP=SHR,DSN=C3321XX.DATA(BOUT2)    
+//SYSOUT DD SYSOUT=*                             
+//SYSIN DD *                                     
+  INREC OVERLAY=(59:59,10,UFF,TO=ZD,LENGTH=10)   
+  SORT FIELDS=(1,41,CH,A)                        
+  SUM FIELDS=(59,10,ZD)                          
+  OUTREC OVERLAY=(59:59,10,ZD,EDIT=(I,III,IIT.TT))
+The above applies the same technique to the 'Total Sales Amount'.  One difference is the EDIT operand.                                             
+                                                                                
+The EDIT operand applies a mask to the result where:                            
+    I represents a place holder for leading insignificant digits, T represents a place holder for trailing significant digits.                 
+
+STEP3 is incomplete and your part of the assignment is to correct it. 
+STEP3                                                                           
+    INREC OVERLAY=(51:51,5,UFF,TO=ZD,LENGTH=5,                                  
+                   59:59,10,UFF,TO=ZD,LENGTH=10)                                
+    SORT FIELDS=(1,41,CH,A)                                                     
+    SUM  FIELDS=(51,5,ZD,59,10,ZD)                                              
+    OUTREC OVERLAY statement to be added
+The above when completed should use the sum amount of STEP1 and total price amount of STEP2 for each bulb description type and display in a single step, called STEP3.                                       
+Name your output dataset as BOUT3 in this step. It should                                                
+  1) sum the order quantity sold for each light bulb type                       
+  2) sum the sale amount for each light bulb type  
+                                    
+Please feel free to Google to learn about the sort routine on the mainframe.
+
+When you have completed the assignment, copy your BJCL, BOUT1, BOUT2, and BOUT3 datasets into a text editor and save it as your_last_name_03.txt. You may want to use IDz for your copy and paste. 
+                                                                                
+How to turn in your work for grading:
+(1)	Log on to WTCLASS
+(2)	Click on ‘2018SP_CS_3321_01_Introduction to Enterprise Systems’ 
+(3)	Navigate to Lessons->Assignment->Programming Assignment 3
+(4)	Upload your_last_name_03.txt file and preview your submission to be sure you can open and view its content. This completes the assignment. 
+
