@@ -1,0 +1,18 @@
+//STEP1 EXEC PGM=SORT                                                   
+//SORTIN DD DISP=SHR,DSN=C3321XX.DATA(BULB)                        
+//SORTOUT DD DISP=SHR,DSN=C3321XX. DATA (BOUT1)                           
+//SYSOUT DD SYSOUT=*                                                    
+//SYSIN DD *                                                            
+   INREC OVERLAY=(51:51,5,UFF,TO=ZD,LENGTH=5)                            
+     SORT FIELDS=(1,41,CH,A)                                             
+     SUM  FIELDS=(51,5,ZD)                                               
+     OUTREC OVERLAY=(51:51,5,ZD,EDIT=(IIIII))                            
+//STEP2 EXEC PGM=SORT                            
+//SORTIN DD DISP=SHR,DSN=C3321XX.DATA(BULB) 
+//SORTOUT DD DISP=SHR,DSN=C3321XX.DATA(BOUT2)    
+//SYSOUT DD SYSOUT=*                             
+//SYSIN DD *                                     
+  INREC OVERLAY=(59:59,10,UFF,TO=ZD,LENGTH=10)   
+  SORT FIELDS=(1,41,CH,A)                        
+  SUM FIELDS=(59,10,ZD)                          
+  OUTREC OVERLAY=(59:59,10,ZD,EDIT=(I,III,IIT.TT))
